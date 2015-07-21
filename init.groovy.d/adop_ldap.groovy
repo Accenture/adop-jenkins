@@ -4,25 +4,30 @@ import hudson.security.*;
 import jenkins.security.plugins.ldap.*;
 import hudson.util.Secret;
 
+// Check if enabled
+def env = System.getenv()
+if (!env['ADOP_LDAP_ENABLED'].toBoolean()) {
+    println "--> ADOP LDAP Disabled"
+    return
+}
+
 // Variables
-def ldap_server = "10.0.0.198:389"
-def ldap_rootDN = "dc=accenture.com,dc=monsoon,dc=accenture,dc=com"
-def ldap_userSearchBase = ""
-def ldap_userSearch = "uid={0}"
-def ldap_groupSearchBase = ""
-def ldap_groupSearchFilter = null
-def ldap_groupMembershipFilter = ""
-def ldap_managerDN = "cn=admin,dc=accenture.com,dc=monsoon,dc=accenture,dc=com"
-def ldap_managerPassword = "Sw4syJSWQRx2AK6KE3vbhpmL"
-def ldap_inhibitInferRootDN = false
-def ldap_disableMailAddressResolver = false
-def ldap_displayNameAttributeName = ""
-def ldap_mailAddressAttributeName = ""
+def ldap_server = env['LDAP_SERVER']
+def ldap_rootDN = env['LDAP_ROOTDN']
+def ldap_userSearchBase = env['LDAP_USER_SEARCH_BASE']
+def ldap_userSearch = env['LDAP_USER_SEARCH']
+def ldap_groupSearchBase = env['LDAP_GROUP_SEARCH_BASE']
+def ldap_groupSearchFilter = env['LDAP_GROUP_SEARCH_FILTER']
+def ldap_groupMembershipFilter = env['LDAP_GROUP_MEMBERSHIP_FILTER']
+def ldap_managerDN = env['LDAP_MANAGER_DN']
+def ldap_managerPassword = env['LDAP_MANAGER_PASSWORD']
+def ldap_inhibitInferRootDN = env['LDAP_INHIBIT_INFER_ROOTDN'].toBoolean()
+def ldap_disableMailAddressResolver = env['LDAP_DISABLE_MAIL_ADDRESS_RESOLVER'].toBoolean()
+def ldap_displayNameAttributeName = env['LDAP_DISPLAY_NAME_ATTRIBUTE_NAME']
+def ldap_mailAddressAttributeName = env['LDAP_MAIL_ADDRESS_ATTRIBUTE_NAME']
 
 // Constants
 def instance = Jenkins.getInstance()
-
-// env['USERNAME']
 
 Thread.start {
     sleep 10000

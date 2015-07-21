@@ -4,13 +4,18 @@ import hudson.tools.*;
 import hudson.tasks.Ant.AntInstaller;
 import hudson.tasks.Ant.AntInstallation;
 
+// Check if enabled
+def env = System.getenv()
+if (!env['ADOP_ANT_ENABLED'].toBoolean()) {
+    println "--> ADOP Ant Disabled"
+    return
+}
+
 // Variables
-def ant_version = "1.9.4"
+def ant_version = env['ANT_VERSION']
 
 // Constants
 def instance = Jenkins.getInstance()
-
-// env['USERNAME']
 
 Thread.start {
     sleep 10000

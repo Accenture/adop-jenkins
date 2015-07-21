@@ -2,16 +2,15 @@ import hudson.model.*;
 import jenkins.model.*;
 
 // Variables
-def root_Url = "http://52.16.250.144/jenkins/"
+def env = System.getenv()
+def root_Url = env['ROOT_URL']
 
 // Constants
 def instance = Jenkins.getInstance()
 
-// env['USERNAME']
-
 Thread.start {
     sleep 10000
-    println "--> ** Configuring Jenkins for ADOP **"
+    println "--> Configuring General Settings"
 
     // Base URL
     println "--> Setting Base URL"

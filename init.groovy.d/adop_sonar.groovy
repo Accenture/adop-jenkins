@@ -4,22 +4,27 @@ import hudson.plugins.sonar.*;
 import hudson.plugins.sonar.model.TriggersConfig;
 import hudson.tools.*
 
-// Variables
-def sonar_server_url = "http://10.0.0.197:8020/sonar/"
-def sonar_account_login = "admin"
-def sonar_account_password = "YWRtaW4="
-def sonar_db_url = "jdbc:mysql://10.0.0.197:3306/sonar?useUnicode=true&amp;characterEncoding=utf8"
-def sonar_db_login = "sonar"
-def sonar_db_password = "c29uYXI="
-def sonar_plugin_version = ""
-def sonar_additional_props = ""
+// Check if enabled
+def env = System.getenv()
+if (!env['ADOP_SONAR_ENABLED'].toBoolean()) {
+    println "--> ADOP SonarQube Disabled"
+    return
+}
 
-def sonar_runner_version = "2.4"
+// Variables
+def sonar_server_url = env['SONAR_SERVER_URL']
+def sonar_account_login = env['SONAR_ACCOUNT_LOGIN']
+def sonar_account_password = env['SONAR_ACCOUNT_PASSWORD']
+def sonar_db_url = env['SONAR_DB_URL']
+def sonar_db_login = env['SONAR_DB_LOGIN']
+def sonar_db_password = env['SONAR_DB_PASSWORD']
+def sonar_plugin_version = env['SONAR_PLUGIN_VERSION']
+def sonar_additional_props = env['SONAR_ADDITIONAL_PROPS']
+
+def sonar_runner_version = env['SONAR_RUNNER_VERSION']
 
 // Constants
 def instance = Jenkins.getInstance()
-
-// env['USERNAME']
 
 Thread.start {
     sleep 10000

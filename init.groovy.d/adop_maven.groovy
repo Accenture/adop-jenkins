@@ -4,13 +4,18 @@ import hudson.tools.*;
 import hudson.tasks.Maven.MavenInstaller;
 import hudson.tasks.Maven.MavenInstallation;
 
+// Check if enabled
+def env = System.getenv()
+if (!env['ADOP_MAVEN_ENABLED'].toBoolean()) {
+    println "--> ADOP Maven Disabled"
+    return
+}
+
 // Variables
-def maven_version = "3.0.5"
+def maven_version = env['MAVEN_VERSION']
 
 // Constants
 def instance = Jenkins.getInstance()
-
-// env['USERNAME']
 
 Thread.start {
     sleep 10000

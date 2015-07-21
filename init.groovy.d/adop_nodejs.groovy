@@ -4,15 +4,20 @@ import hudson.tools.*;
 import jenkins.plugins.nodejs.*;
 import jenkins.plugins.nodejs.tools.*;
 
+// Check if enabled
+def env = System.getenv()
+if (!env['ADOP_NODEJS_ENABLED'].toBoolean()) {
+    println "--> ADOP NodeJS Disabled"
+    return
+}
+
 // Variables
-def nodejs_version = "0.12.2"
-def nodejs_global_packages = "grunt-cli@~0.1.13 bower@~1.3.12 plato@~1.2.1"
-def nodejs_packages_refresh_hours = 72
+def nodejs_version = env['NODEJS_VERSION']
+def nodejs_global_packages = env['NODEJS_GLOBAL_PACKAGES']
+def nodejs_packages_refresh_hours = env['NODEJS_PACKAGES_REFRESH_HOURS'].toLong()
 
 // Constants
 def instance = Jenkins.getInstance()
-
-// env['USERNAME']
 
 Thread.start {
     sleep 10000
