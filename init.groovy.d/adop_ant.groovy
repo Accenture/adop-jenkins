@@ -4,10 +4,13 @@ import hudson.tools.*;
 import hudson.tasks.Ant.AntInstaller;
 import hudson.tasks.Ant.AntInstallation;
 
+// Grab output stream
+def output = getBinding().out
+
 // Check if enabled
 def env = System.getenv()
 if (!env['ADOP_ANT_ENABLED'].toBoolean()) {
-    println "--> ADOP Ant Disabled"
+    output.println "--> ADOP Ant Disabled"
     return
 }
 
@@ -21,7 +24,7 @@ Thread.start {
     sleep 10000
 
     // Ant
-    println "--> Configuring Ant"
+    output.println "--> Configuring Ant"
     def desc_AntTool = instance.getDescriptor("hudson.tasks.Ant")
 
     def antInstaller = new AntInstaller(ant_version)
@@ -39,7 +42,7 @@ Thread.start {
       installation = (AntInstallation) it
         if ( ant_inst.getName() ==  installation.getName() ) {
                 ant_inst_exists = true
-                println("Found existing installation: " + installation.getName())
+                output.println("Found existing installation: " + installation.getName())
         }
     }
     

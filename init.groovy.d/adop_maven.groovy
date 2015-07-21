@@ -4,10 +4,13 @@ import hudson.tools.*;
 import hudson.tasks.Maven.MavenInstaller;
 import hudson.tasks.Maven.MavenInstallation;
 
+// Grab output stream
+def output = getBinding().out
+
 // Check if enabled
 def env = System.getenv()
 if (!env['ADOP_MAVEN_ENABLED'].toBoolean()) {
-    println "--> ADOP Maven Disabled"
+    output.println "--> ADOP Maven Disabled"
     return
 }
 
@@ -21,7 +24,7 @@ Thread.start {
     sleep 10000
 
     // Maven
-    println "--> Configuring Maven"
+    output.println "--> Configuring Maven"
     def desc_MavenTool = instance.getDescriptor("hudson.tasks.Maven")
 
     def mavenInstaller = new MavenInstaller(maven_version)
@@ -39,7 +42,7 @@ Thread.start {
       installation = (MavenInstallation) it
         if ( maven_inst.getName() ==  installation.getName() ) {
                 maven_inst_exists = true
-                println("Found existing installation: " + installation.getName())
+                output.println("Found existing installation: " + installation.getName())
         }
     }
     

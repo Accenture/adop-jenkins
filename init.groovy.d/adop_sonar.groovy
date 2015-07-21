@@ -4,10 +4,13 @@ import hudson.plugins.sonar.*;
 import hudson.plugins.sonar.model.TriggersConfig;
 import hudson.tools.*
 
+// Grab output stream
+def output = getBinding().out
+
 // Check if enabled
 def env = System.getenv()
 if (!env['ADOP_SONAR_ENABLED'].toBoolean()) {
-    println "--> ADOP SonarQube Disabled"
+    output.println "--> ADOP SonarQube Disabled"
     return
 }
 
@@ -31,7 +34,7 @@ Thread.start {
 
     // Sonar
     // Source: http://pghalliday.com/jenkins/groovy/sonar/chef/configuration/management/2014/09/21/some-useful-jenkins-groovy-scripts.html
-    println "--> Configuring SonarQube"
+    output.println "--> Configuring SonarQube"
     def desc_SonarPublisher = instance.getDescriptor("hudson.plugins.sonar.SonarPublisher")
 
     def sonar_inst = new SonarInstallation(
@@ -55,7 +58,7 @@ Thread.start {
       installation = (SonarInstallation) it
         if ( sonar_inst.getName() ==  installation.getName() ) {
                 sonar_inst_exists = true
-                println("Found existing installation: " + installation.getName())
+                output.println("Found existing installation: " + installation.getName())
         }
     }
     
@@ -67,7 +70,7 @@ Thread.start {
     
     // Sonar Runner
     // Source: http://pghalliday.com/jenkins/groovy/sonar/chef/configuration/management/2014/09/21/some-useful-jenkins-groovy-scripts.html
-    println "--> Configuring SonarRunner"
+    output.println "--> Configuring SonarRunner"
     def desc_SonarRunnerInst = instance.getDescriptor("hudson.plugins.sonar.SonarRunnerInstallation")
 
     def sonarRunnerInstaller = new SonarRunnerInstaller(sonar_runner_version)
@@ -81,7 +84,7 @@ Thread.start {
       installation = (SonarRunnerInstallation) it
         if ( sonarRunner_inst.getName() ==  installation.getName() ) {
                 sonar_runner_inst_exists = true
-                println("Found existing installation: " + installation.getName())
+                output.println("Found existing installation: " + installation.getName())
         }
     }
     

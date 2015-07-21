@@ -1,6 +1,9 @@
 import hudson.model.*;
 import jenkins.model.*;
 
+// Grab output stream
+def output = getBinding().out
+
 // Variables
 def env = System.getenv()
 def root_Url = env['ROOT_URL']
@@ -10,10 +13,10 @@ def instance = Jenkins.getInstance()
 
 Thread.start {
     sleep 10000
-    println "--> Configuring General Settings"
+    output.println "--> Configuring General Settings"
 
     // Base URL
-    println "--> Setting Base URL"
+    output.println "--> Setting Base URL"
     jlc = JenkinsLocationConfiguration.get()
     jlc.setUrl(root_Url)
     jlc.save()
