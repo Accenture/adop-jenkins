@@ -4,13 +4,10 @@ import hudson.tools.*;
 import jenkins.plugins.nodejs.*;
 import jenkins.plugins.nodejs.tools.*;
 
-// Grab output stream
-def output = getBinding().out
-
 // Check if enabled
 def env = System.getenv()
 if (!env['ADOP_NODEJS_ENABLED'].toBoolean()) {
-    output.println "--> ADOP NodeJS Disabled"
+    println "--> ADOP NodeJS Disabled"
     return
 }
 
@@ -26,7 +23,7 @@ Thread.start {
     sleep 10000
 
     // NodeJS
-    output.println "--> Configuring NodeJS"
+    println "--> Configuring NodeJS"
     def nodeJSPluginInstance = NodeJSPlugin.instance()
 
     def nodejsInstaller = new NodeJSInstaller(nodejs_version,nodejs_global_packages,nodejs_packages_refresh_hours)
@@ -44,7 +41,7 @@ Thread.start {
       installation = (NodeJSInstallation) it
         if ( nodejs_inst.getName() ==  installation.getName() ) {
                 nodejs_inst_exists = true
-                output.println("Found existing installation: " + installation.getName())
+                println("Found existing installation: " + installation.getName())
         }
     }
     

@@ -4,13 +4,10 @@ import hudson.security.*;
 import jenkins.security.plugins.ldap.*;
 import hudson.util.Secret;
 
-// Grab output stream
-def output = getBinding().out
-
 // Check if enabled
 def env = System.getenv()
 if (!env['ADOP_LDAP_ENABLED'].toBoolean()) {
-    output.println "--> ADOP LDAP Disabled"
+    println "--> ADOP LDAP Disabled"
     return
 }
 
@@ -36,7 +33,7 @@ Thread.start {
     sleep 10000
 
     // LDAP
-    output.println "--> Configuring LDAP"
+    println "--> Configuring LDAP"
 
     def ldapRealm = new LDAPSecurityRealm(
         ldap_server, //String server
