@@ -72,7 +72,7 @@ Thread.start {
     println "--> Configuring Git Identity"
     def desc_git_scm = instance.getDescriptor("hudson.plugins.git.GitSCM")
     desc_git_scm.setGlobalConfigName("ADOP Jenkins")
-    desc_git_scm.setGlobalConfigEmail("jenkins@adop")
+    desc_git_scm.setGlobalConfigEmail("jenkins@accenture.com")
 
     // Save the state
     instance.save()
