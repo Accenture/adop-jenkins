@@ -7,6 +7,11 @@ COPY resources/plugins.txt /usr/share/jenkins/ref/
 COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/scripts/ /usr/share/jenkins/ref/adop_scripts/
 
+# Reprotect
+USER root
+RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/
+USER jenkins
+
 # Environment variables
 ENV ADOP_LDAP_ENABLED=true ADOP_SONAR_ENABLED=true ADOP_ANT_ENABLED=true ADOP_MAVEN_ENABLED=true ADOP_NODEJS_ENABLED=true ADOP_GERRIT_ENABLED=true
 
