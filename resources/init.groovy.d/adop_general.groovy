@@ -57,7 +57,7 @@ Thread.start {
 
     if(!ssh_credentials_exist) {
         def ssh_key_scope = CredentialsScope.GLOBAL
-        def ssh_key_id = null
+        def ssh_key_id = "adop-jenkins-master"
         def ssh_key_username = "jenkins"
         def ssh_key_private_key_source = new BasicSSHUserPrivateKey.UsersPrivateKeySource()
         def ssh_key_passphrase = null
