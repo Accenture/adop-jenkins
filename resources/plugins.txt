@@ -82,3 +82,5 @@ jdepend:1.2.4
 matrix-auth:1.2
 windows-slaves:1.1
 rebuild:1.25
+cloudbees-folder:5.0
+job-dsl:1.39
