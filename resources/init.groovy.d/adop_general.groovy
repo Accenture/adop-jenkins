@@ -12,7 +12,6 @@ def root_Url = env['ROOT_URL']
 def instance = Jenkins.getInstance()
 
 Thread.start {
-    sleep 10000
     println "--> Configuring General Settings"
 
     // Base URL
