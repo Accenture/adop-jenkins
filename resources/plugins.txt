@@ -9,7 +9,7 @@ ssh-agent:1.7
 junit:1.6
 promoted-builds:2.21
 xunit:1.96
-credentials:1.22
+credentials:1.24
 git:2.3.5
 docker-build-step:1.26
 git-server:1.6
@@ -85,3 +85,7 @@ rebuild:1.25
 cloudbees-folder:5.0
 job-dsl:1.39
 swarm:2.0
+credentials-binding:1.6
+plain-credentials:1.1
+workflow-step-api:1.11
+
