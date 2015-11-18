@@ -9,6 +9,7 @@ def env = System.getenv()
 def root_Url = env['ROOT_URL']
 def gitGlobalConfigName = env['GIT_GLOBAL_CONFIG_NAME']
 def gitGlobalConfigEmail = env['GIT_GLOBAL_CONFIG_EMAIL']
+def awsDefaultRegion = env['AWS_DEFAULT_REGION']
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -40,6 +41,7 @@ Thread.start {
 
     // Example
     //envVars.put("FOO", "bar")
+    envVars.put("AWS_DEFAULT_REGION", awsDefaultRegion)
 
     // Jenkins SSH Credentials
     println "--> Registering SSH Credentials"
