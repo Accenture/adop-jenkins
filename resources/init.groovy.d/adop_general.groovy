@@ -7,6 +7,8 @@ import com.cloudbees.plugins.credentials.CredentialsScope;
 // Variables
 def env = System.getenv()
 def root_Url = env['ROOT_URL']
+def gitGlobalConfigName = env['GIT_GLOBAL_CONFIG_NAME']
+def gitGlobalConfigEmail = env['GIT_GLOBAL_CONFIG_EMAIL']
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -70,8 +72,8 @@ Thread.start {
     // Git Identity
     println "--> Configuring Git Identity"
     def desc_git_scm = instance.getDescriptor("hudson.plugins.git.GitSCM")
-    desc_git_scm.setGlobalConfigName("ADOP Jenkins")
-    desc_git_scm.setGlobalConfigEmail("jenkins@accenture.com")
+    desc_git_scm.setGlobalConfigName(gitGlobalConfigName)
+    desc_git_scm.setGlobalConfigEmail(gitGlobalConfigEmail)
 
     // Save the state
     instance.save()
