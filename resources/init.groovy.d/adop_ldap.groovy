@@ -3,6 +3,9 @@ import jenkins.model.*;
 import hudson.security.*;
 import jenkins.security.plugins.ldap.*;
 import hudson.util.Secret;
+import com.cloudbees.plugins.credentials.SystemCredentialsProvider;
+import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl;
+import com.cloudbees.plugins.credentials.CredentialsScope;
 
 // Check if enabled
 def env = System.getenv()
@@ -31,6 +34,33 @@ def instance = Jenkins.getInstance()
 
 Thread.start {
     sleep 10000
+
+    // Add Global credentials for LDAP
+    println "--> Registering LDAP Credentials"
+    def system_credentials_provider = SystemCredentialsProvider.getInstance()
+
+    def credential_description = "ADOP LDAP Admin"
+
+    ldap_credentials_exist = false
+    system_credentials_provider.getCredentials().each {
+        credentials = (com.cloudbees.plugins.credentials.Credentials) it
+        if ( credentials.getDescription() == credential_description) {
+            ldap_credentials_exist = true
+            println("Found existing credentials: " + credential_description)
+        }
+    }
+
+    if(!ldap_credentials_exist) {
+        def credential_scope = CredentialsScope.GLOBAL
+        def credential_id = "adop-ldap-admin"
+        def credential_username = ldap_managerDN
+        def credential_password = ldap_managerPassword
+
+        def credential_domain = com.cloudbees.plugins.credentials.domains.Domain.global()
+        def credential_creds = new UsernamePasswordCredentialsImpl(credential_scope,credential_id,credential_description,credential_username,credential_password)
+
+        system_credentials_provider.addCredentials(credential_domain,credential_creds)
+    }
 
     // LDAP
     println "--> Configuring LDAP"
