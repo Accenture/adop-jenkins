@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <de.pellepelster.jenkins.walldisplay.WallDisplayJobProperty plugin="jenkinswalldisplay@0.6.30"/>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.3.5">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <url>ssh://jenkins@gerrit.service.adop.consul:29418/platform-management</url>
+        <credentialsId>adop-jenkins-master</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+        <relativeTargetDir>platform-management</relativeTargetDir>
+      </hudson.plugins.git.extensions.impl.RelativeTargetDirectory>
+    </extensions>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash -ex
+
+# We trust everywhere
+echo -e &quot;#!/bin/sh
+exec ssh -o StrictHostKeyChecking=no &quot;\$@&quot;
+&quot; &gt; ${WORKSPACE}/custom_ssh
+chmod +x ${WORKSPACE}/custom_ssh
+export GIT_SSH=&quot;${WORKSPACE}/custom_ssh&quot;
+
+# Create repositories
+mkdir ${WORKSPACE}/tmp
+cd ${WORKSPACE}/tmp
+while read repo_url; do
+    if [ ! -z &quot;${repo_url}&quot; ]; then
+        repo_name=$(echo &quot;${repo_url}&quot; | rev | cut -d&apos;/&apos; -f1 | rev | sed &apos;s#.git$##g&apos;)
+        target_repo_name=&quot;cartridges/${repo_name}&quot;
+
+        # Check if the repository already exists or not
+        repo_exists=0
+        list_of_repos=$(ssh -n -o StrictHostKeyChecking=no -p 29418 gerrit.service.adop.consul gerrit ls-projects --type code)
+
+        for repo in ${list_of_repos}
+        do
+            if [ ${repo} = ${target_repo_name} ]; then
+                echo &quot;Found: ${repo}&quot;
+                repo_exists=1
+                break
+            fi
+        done
+
+        # If not, create it
+        if [ ${repo_exists} -eq 0 ]; then
+            ssh -n -o StrictHostKeyChecking=no -p 29418 gerrit.service.adop.consul gerrit create-project --parent &quot;All-Projects&quot; &quot;${target_repo_name}&quot;
+        else
+            echo &quot;Repository already exists, skipping: ${target_repo_name}&quot;
+        fi
+
+        # Populate repository
+        git clone ssh://jenkins@gerrit.service.adop.consul:29418/&quot;${target_repo_name}&quot;
+        cd &quot;${repo_name}&quot;
+        git remote add source &quot;${repo_url}&quot;
+        git fetch source
+        git push origin +refs/remotes/source/*:refs/heads/*
+        cd -
+    fi
+done &lt; ${WORKSPACE}/platform-management/cartridges.txt</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.26">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <com.michelin.cio.hudson.plugins.maskpasswords.MaskPasswordsBuildWrapper/>
+    <com.cloudbees.jenkins.plugins.sshagent.SSHAgentBuildWrapper plugin="ssh-agent@1.7">
+      <credentialIds>
+        <string>adop-jenkins-master</string>
+      </credentialIds>
+      <ignoreMissing>false</ignoreMissing>
+    </com.cloudbees.jenkins.plugins.sshagent.SSHAgentBuildWrapper>
+  </buildWrappers>
+</project>
