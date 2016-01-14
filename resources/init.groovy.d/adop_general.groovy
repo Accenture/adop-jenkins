@@ -41,7 +41,9 @@ Thread.start {
 
     // Example
     //envVars.put("FOO", "bar")
-    envVars.put("AWS_DEFAULT_REGION", awsDefaultRegion)
+    if ( awsDefaultRegion != null ) {
+	envVars.put("AWS_DEFAULT_REGION", awsDefaultRegion)
+    }
 
     // Jenkins SSH Credentials
     println "--> Registering SSH Credentials"
