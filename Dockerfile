@@ -21,7 +21,7 @@ COPY resources/entrypoint.sh /entrypoint.sh
 # Reprotect
 USER root
 RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && chmod +x /entrypoint.sh
-USER jenkins
+# USER jenkins
 
 # Environment variables
 ENV ADOP_LDAP_ENABLED=true ADOP_SONAR_ENABLED=true ADOP_ANT_ENABLED=true ADOP_MAVEN_ENABLED=true ADOP_NODEJS_ENABLED=true ADOP_GERRIT_ENABLED=true
