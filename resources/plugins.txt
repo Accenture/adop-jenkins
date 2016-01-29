@@ -41,7 +41,7 @@ git-client:1.19.2
 versionnumber:1.5
 email-ext:2.40.5
 workflow-api:1.13
-parameterized-trigger:2.27
+parameterized-trigger:2.30
 junit:1.6
 promoted-builds:2.24.1
 role-strategy:2.2.0
