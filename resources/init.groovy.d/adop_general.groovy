@@ -10,6 +10,8 @@ def root_Url = env['ROOT_URL']
 def gitGlobalConfigName = env['GIT_GLOBAL_CONFIG_NAME']
 def gitGlobalConfigEmail = env['GIT_GLOBAL_CONFIG_EMAIL']
 def awsDefaultRegion = env['AWS_DEFAULT_REGION']
+def dockerTLSVerify = env['DOCKER_TLS_VERIFY']
+def dockerNetworkName = env['DOCKER_NETWORK_NAME']
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -43,6 +45,14 @@ Thread.start {
     //envVars.put("FOO", "bar")
     if ( awsDefaultRegion != null ) {
 	envVars.put("AWS_DEFAULT_REGION", awsDefaultRegion)
+    }
+    
+    // Set Docker environment
+    if ( dockerTLSVerify != null && dockerTLSVerify.toBoolean()) {
+        envVars.put("DOCKER_TLS_VERIFY", env['DOCKER_TLS_VERIFY'])
+        envVars.put("DOCKER_HOST", env['DOCKER_HOST'])
+        envVars.put("DOCKER_CERT_PATH", env['DOCKER_CLIENT_CERT_PATH'])
+	envVars.put("DOCKER_NETWORK_NAME", env['DOCKER_NETWORK_NAME'])
     }
 
     // Jenkins SSH Credentials
