@@ -9,7 +9,7 @@
         <hudson.model.StringParameterDefinition>
           <name>GIT_URL</name>
           <description>The URL of the git repo for Platform Management.</description>
-          <defaultValue></defaultValue>
+          <defaultValue>https://github.com/Accenture/adop-platform-management.git</defaultValue>
         </hudson.model.StringParameterDefinition>
         <hudson.model.BooleanParameterDefinition>
           <name>GENERATE_EXAMPLE_WORKSPACE</name>
@@ -24,7 +24,7 @@
     </com.sonyericsson.rebuild.RebuildSettings>
     <de.pellepelster.jenkins.walldisplay.WallDisplayJobProperty plugin="jenkinswalldisplay@0.6.30"/>
   </properties>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.3.5">
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.1">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -46,6 +46,7 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <authToken>gAsuE35s</authToken>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
   <builders>
