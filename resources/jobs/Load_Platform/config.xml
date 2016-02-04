@@ -103,6 +103,26 @@ git push adop +refs/remotes/origin/*:refs/heads/*</command>
             <projects>Platform_Management/Load_Cartridge_List</projects>
             <condition>ALWAYS</condition>
             <triggerWithNoParameters>false</triggerWithNoParameters>
+            <block>
+              <buildStepFailureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </buildStepFailureThreshold>
+              <unstableThreshold>
+                <name>UNSTABLE</name>
+                <ordinal>1</ordinal>
+                <color>YELLOW</color>
+                <completeBuild>true</completeBuild>
+              </unstableThreshold>
+              <failureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </failureThreshold>
+            </block>
             <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
           </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
           <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
@@ -110,6 +130,53 @@ git push adop +refs/remotes/origin/*:refs/heads/*</command>
             <projects>Platform_Management/Generate_Example_Workspace</projects>
             <condition>ALWAYS</condition>
             <triggerWithNoParameters>false</triggerWithNoParameters>
+            <block>
+              <buildStepFailureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </buildStepFailureThreshold>
+              <unstableThreshold>
+                <name>UNSTABLE</name>
+                <ordinal>1</ordinal>
+                <color>YELLOW</color>
+                <completeBuild>true</completeBuild>
+              </unstableThreshold>
+              <failureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </failureThreshold>
+            </block>
+            <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+          </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            <configs class="empty-list"/>
+            <projects>Platform_Management/Setup_Gerrit</projects>
+            <condition>ALWAYS</condition>
+            <triggerWithNoParameters>false</triggerWithNoParameters>
+            <block>
+              <buildStepFailureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </buildStepFailureThreshold>
+              <unstableThreshold>
+                <name>UNSTABLE</name>
+                <ordinal>1</ordinal>
+                <color>YELLOW</color>
+                <completeBuild>true</completeBuild>
+              </unstableThreshold>
+              <failureThreshold>
+                <name>FAILURE</name>
+                <ordinal>2</ordinal>
+                <color>RED</color>
+                <completeBuild>true</completeBuild>
+              </failureThreshold>
+            </block>
             <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
           </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
         </configs>
