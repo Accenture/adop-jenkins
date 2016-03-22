@@ -32,6 +32,8 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * GERRIT_JENKINS_USERNAME, the username Jenkins will use to connect to Gerrit. Default to gerrit.
 * GERRIT_JENKINS_PASSWORD, the password Jenkins will use to connect to Gerrit. Default to gerrit.
 * GERRIT_FRONT_END_URL, the URL for gerrit frontend.
+* INITIAL_ADMIN_USER, the username for the admin user.
+* INITIAL_ADMIN_PASSWORD, the password for the initial admin user.
 * LDAP_SERVER, the LDPA URI, i.e. ldap-host:389
 * LDAP_ROOTDN, the LDAP BASE_DN
 * LDAP_USER_SEARCH_BASE, base organization unit to use to search for users
