@@ -63,6 +63,11 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * NODEJS_PACKAGES_REFRESH_HOURS, nodejs package refresh time in hours.
 * GIT_GLOBAL_CONFIG_NAME, Git global config name
 * GIT_GLOBAL_CONFIG_EMAIL, Git global config email
+* AWS_DEFAULT_REGION, set the AWS default region for the CLI at a global level
+* DOCKER_TLS_VERIFY, Docker CLI variable to declare a TLS-enabled engine
+* DOCKER_HOST, Docker CLI variable to declare the endpoint to target
+* DOCKER_CERT_PATH, Docker CLI variable to declare the path to the certificate
+* DOCKER_NETWORK_NAME, the Docker custom network to launch containers on
 
 ## Run docker-jenkins with OpenLDAP
 The following assumes that MySQL and OpenLDAP are running.
