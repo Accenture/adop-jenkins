@@ -52,6 +52,8 @@ Thread.start {
     // Set Docker environment
     if ( dockerTLSVerify != null && dockerTLSVerify.toBoolean()) {
         envVars.put("DOCKER_TLS_VERIFY", env['DOCKER_TLS_VERIFY'])
+    } else {
+        envVars.remove("DOCKER_TLS_VERIFY")
     }
     if ( dockerHost != null ) {
         envVars.put("DOCKER_HOST", dockerHost)
