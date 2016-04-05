@@ -57,6 +57,9 @@ if [[ ! $(ls -A "${JENKINS_SSH_DIR}") ]]; then
   mkdir -p ${JENKINS_USER_CONTENT_DIR}
   rm -f ${JENKINS_USER_CONTENT_DIR}/id_rsa.pub
   cp ${JENKINS_SSH_DIR}/id_rsa.pub ${JENKINS_USER_CONTENT_DIR}/id_rsa.pub
+
+  # Set correct permissions for Content Directory
+  chown 1000:1000 "${JENKINS_USER_CONTENT_DIR}"
 fi
 # public_key_val=$(cat ${JENKINS_SSH_DIR}/id_rsa.pub)
 
