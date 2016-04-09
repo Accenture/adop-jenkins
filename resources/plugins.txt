@@ -103,3 +103,4 @@ credentials:1.24
 build-failure-analyzer:1.13.5
 jackson2-api:2.5.4
 metrics:3.1.2.7
+extended-choice-parameter:0.56
