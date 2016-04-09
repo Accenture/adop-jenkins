@@ -4,17 +4,17 @@
     <server>
       <id>releases</id>
       <username>nexus</username>
-      <password>Password01</password>
+      <password>${env.INITIAL_ADMIN_PASSWORD}</password>
     </server>
     <server>
       <id>snapshots</id>
       <username>nexus</username>
-      <password>Password01</password>
+      <password>${env.INITIAL_ADMIN_PASSWORD}</password>
     </server>
     <server>
       <id>deployment</id>
-      <username>john.smith</username>
-      <password>Password01</password>
+      <username>${env.INITIAL_ADMIN_USER}</username>
+      <password>${env.INITIAL_ADMIN_PASSWORD}</password>
     </server>
   </servers>
 </settings>

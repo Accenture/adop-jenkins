@@ -32,6 +32,8 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * GERRIT_JENKINS_USERNAME, the username Jenkins will use to connect to Gerrit. Default to gerrit.
 * GERRIT_JENKINS_PASSWORD, the password Jenkins will use to connect to Gerrit. Default to gerrit.
 * GERRIT_FRONT_END_URL, the URL for gerrit frontend.
+* INITIAL_ADMIN_USER, the username for the admin user.
+* INITIAL_ADMIN_PASSWORD, the password for the initial admin user.
 * LDAP_SERVER, the LDPA URI, i.e. ldap-host:389
 * LDAP_ROOTDN, the LDAP BASE_DN
 * LDAP_USER_SEARCH_BASE, base organization unit to use to search for users
@@ -61,6 +63,11 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * NODEJS_PACKAGES_REFRESH_HOURS, nodejs package refresh time in hours.
 * GIT_GLOBAL_CONFIG_NAME, Git global config name
 * GIT_GLOBAL_CONFIG_EMAIL, Git global config email
+* AWS_DEFAULT_REGION, set the AWS default region for the CLI at a global level
+* DOCKER_TLS_VERIFY, Docker CLI variable to declare a TLS-enabled engine
+* DOCKER_HOST, Docker CLI variable to declare the endpoint to target
+* DOCKER_CERT_PATH, Docker CLI variable to declare the path to the certificate
+* DOCKER_NETWORK_NAME, the Docker custom network to launch containers on
 
 ## Run docker-jenkins with OpenLDAP
 The following assumes that MySQL and OpenLDAP are running.
