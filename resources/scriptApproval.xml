@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<scriptApproval plugin="script-security@1.17">
+  <approvedScriptHashes/>
+  <approvedSignatures>
+    <string>field java.util.ArrayList size</string>
+    <string>method groovy.lang.GString plus java.lang.String</string>
+  </approvedSignatures>
+  <aclApprovedSignatures/>
+  <approvedClasspathEntries/>
+  <pendingScripts/>
+  <pendingSignatures/>
+  <pendingClasspathEntries/>
+</scriptApproval>

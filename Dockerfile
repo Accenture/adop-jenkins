@@ -16,6 +16,7 @@ COPY resources/scriptler/ /usr/share/jenkins/ref/scriptler/scripts/
 COPY resources/views/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/m2/ /usr/share/jenkins/ref/.m2
 COPY resources/entrypoint.sh /entrypoint.sh
+COPY resources/scriptApproval.xml /usr/share/jenkins/ref/
 
 # Reprotect
 USER root
