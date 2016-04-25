@@ -1,23 +1,23 @@
-#Supported tags and respective Dockerfile links
+# Supported tags and respective `Dockerfile` links
 
-- [`0.1.0`, `0.1.0` (*0.1.0/Dockerfile*)](https://github.com/Accenture/adop-jenkins/blob/master/Dockerfile.md)
+- [`0.1.4`, `0.1.4` (*0.1.4/Dockerfile*)](https://github.com/Accenture/adop-jenkins/blob/0.1.4/Dockerfile)
 
 # What is adop-jenkins?
 
-adop-jenkins is a wrapper for the jenkins image. It has primarily been built to perform extended configuration.
+adop-jenkins is a wrapper for the Jenkins image. It has primarily been built to perform extended configuration.
 Jenkins is an open source automation tool.
 
 # How to use this image
 
-The easiest for to run docker-jenkins image is as follow:
+The easiest for to run adop-jenkins image is as follow:
 ```
-docker run --name <your-container-name> -d -p 8080:8080 adop/jenkins:VERSION
+docker run --name <your-container-name> -d -p 8080:8080 accenture/adop-jenkins:VERSION
 ```
-after the above jenkins will be available at: http://localhost:8080
+after the above Jenkins will be available at: http://localhost:8080
 
 Runtime configuration can be provided using environment variables:
 
-* JENKINS_OPTS, jenkins startup options.
+* JENKINS_OPTS, Jenkins startup options.
 * ADOP_LDAP_ENABLED, allow enable/disable LDAP authentication. Default to true (enabled).
 * ADOP_SONAR_ENABLED, allow enable/disable Jenkins-Sonar integrations. Default to true (enabled).
 * ADOP_ANT_ENABLED, allow enable/disable Jenkins-ANT integration. Default to true (enabled).
@@ -27,11 +27,11 @@ Runtime configuration can be provided using environment variables:
 
 Additional environment variables that allow fine tune Jenkins runtime configuration are:
 
-* GERRIT_HOST_NAME, the gerrit hostname. Default to gerrit
-* GERRIT_PORT, the port gerrit APIs are exposed. Default to 8080
-* GERRIT_JENKINS_USERNAME, the username Jenkins will use to connect to Gerrit. Default to gerrit.
+* GERRIT_HOST_NAME, the Gerrit hostname. Default to Gerrit
+* GERRIT_PORT, the port Gerrit APIs are exposed. Default to 8080
+* GERRIT_JENKINS_USERNAME, the username Jenkins will use to connect to Gerrit. Default to Gerrit.
 * GERRIT_JENKINS_PASSWORD, the password Jenkins will use to connect to Gerrit. Default to gerrit.
-* GERRIT_FRONT_END_URL, the URL for gerrit frontend.
+* GERRIT_FRONT_END_URL, the URL for Gerrit frontend.
 * INITIAL_ADMIN_USER, the username for the admin user.
 * INITIAL_ADMIN_PASSWORD, the password for the initial admin user.
 * LDAP_SERVER, the LDPA URI, i.e. ldap-host:389
@@ -48,7 +48,7 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * LDAP_DISABLE_MAIL_ADDRESS_RESOLVER, flag indicating if the email address resolver should be disabled
 * LDAP_MAIL_ADDRESS_ATTRIBUTE_NAME, LDAP object field used as a email address
 * SONAR_SERVER_URL, the sonar server URL
-* SONAR_ACCOUNT_LOGIN, username to use when connecting to sonar 
+* SONAR_ACCOUNT_LOGIN, username to use when connecting to sonar
 * SONAR_ACCOUNT_PASSWORD, password to use when connecting to sonar
 * SONAR_DB_URL, sonar database JDBC connection string
 * SONAR_DB_LOGIN, username to use to connect to sonar DB
@@ -69,13 +69,13 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * DOCKER_CERT_PATH, Docker CLI variable to declare the path to the certificate
 * DOCKER_NETWORK_NAME, the Docker custom network to launch containers on
 
-## Run docker-jenkins with OpenLDAP
+## Run adop-jenkins with OpenLDAP
 The following assumes that MySQL and OpenLDAP are running.
 
 The following command will run adop-jenkins and connect it to OpenLDAP
 ```
   docker run \
-  --name adop-gerrit \
+  --name adop-jenkins \
   -p 8080:8080 \
   -e LDAP_SERVER="ldap:389" \
   -e LDAP_ROOTDN="${LDAP_FULL_DOMAIN}" \
@@ -90,13 +90,13 @@ The following command will run adop-jenkins and connect it to OpenLDAP
   -e LDAP_DISABLE_MAIL_ADDRESS_RESOLVER="false" \
   -e LDAP_DISPLAY_NAME_ATTRIBUTE_NAME="displayName" \
   -e LDAP_MAIL_ADDRESS_ATTRIBUTE_NAME="mail" \
-  -d docker.accenture.com/adop/docker-jenkins:VERSION
+  -d accenture/adop-jenkins:VERSION
 ```
 
 # License
-Please view [licence information](LICENCE.md) for the software contained on this image.
+Please view [license information](LICENSE.md) for the software contained on this image.
 
-#Supported Docker versions
+# Supported Docker versions
 
 This image is officially supported on Docker version 1.9.1.
 Support for older versions (down to 1.6) is provided on a best-effort basis.
@@ -104,8 +104,7 @@ Support for older versions (down to 1.6) is provided on a best-effort basis.
 # User feedback
 
 ## Documentation
-Documentation for this image is available in the [Jenkins documentation page](https://wiki.jenkins-ci.org/display/JENKINS/Home). 
-Additional documentaion can be found under the [`docker-library/docs` GitHub repo](https://github.com/docker-library/docs). Be sure to familiarize yourself with the [repository's `README.md` file](https://github.com/docker-library/docs/blob/master/README.md) before attempting a pull request.
+Documentation for this image is available in the [Jenkins documentation page](https://wiki.jenkins-ci.org/display/JENKINS/Home).
 
 ## Issues
 If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/Accenture/adop-jenkins/issues).
