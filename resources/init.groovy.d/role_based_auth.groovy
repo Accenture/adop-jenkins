@@ -7,10 +7,12 @@ import java.util.*
 import com.michelin.cio.hudson.plugins.rolestrategy.*
 import java.lang.reflect.*
 
+def env = System.getenv()
+
 // Roles
 def globalRoleRead = "read"
 def globalRoleAdmin = "admin"
-def ldapGroupNameAdmin = "administrators"
+def ldapGroupNameAdmin = env['LDAP_GROUP_NAME_ADMIN'] ?: "administrators"
 
 def jenkinsInstance = Jenkins.getInstance()
 def currentAuthenticationStrategy = Hudson.instance.getAuthorizationStrategy()

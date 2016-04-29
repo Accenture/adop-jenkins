@@ -47,6 +47,7 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * LDAP_DISPLAY_NAME_ATTRIBUTE_NAME, LDAP object field used as a display name
 * LDAP_DISABLE_MAIL_ADDRESS_RESOLVER, flag indicating if the email address resolver should be disabled
 * LDAP_MAIL_ADDRESS_ATTRIBUTE_NAME, LDAP object field used as a email address
+* LDAP_GROUP_NAME_ADMIN, LDAP admin group. Default to administrators.
 * SONAR_SERVER_URL, the sonar server URL
 * SONAR_ACCOUNT_LOGIN, username to use when connecting to sonar
 * SONAR_ACCOUNT_PASSWORD, password to use when connecting to sonar
