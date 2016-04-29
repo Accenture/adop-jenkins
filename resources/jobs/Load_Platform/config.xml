@@ -81,7 +81,8 @@ fi
 # Setup remote &amp; populate
 git remote add adop ssh://jenkins@gerrit:29418/&quot;${target_repo_name}&quot;
 git fetch adop
-git push adop +refs/remotes/origin/*:refs/heads/*</command>
+git push adop +refs/remotes/origin/*:refs/heads/*
+git push adop --tags</command>
     </hudson.tasks.Shell>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.39">
       <targets>bootstrap/**/*.groovy</targets>
