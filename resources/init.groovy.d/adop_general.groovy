@@ -9,6 +9,7 @@ def env = System.getenv()
 def root_Url = env['ROOT_URL']
 def gitGlobalConfigName = env['GIT_GLOBAL_CONFIG_NAME']
 def gitGlobalConfigEmail = env['GIT_GLOBAL_CONFIG_EMAIL']
+def adopPlatformManagementVersion = env['ADOP_PLATFORM_MANAGEMENT_VERSION']
 def awsDefaultRegion = env['AWS_DEFAULT_REGION']
 def dockerTLSVerify = env['DOCKER_TLS_VERIFY']
 def dockerHost = env['DOCKER_HOST']
@@ -48,7 +49,12 @@ Thread.start {
     if ( awsDefaultRegion != null ) {
 	envVars.put("AWS_DEFAULT_REGION", awsDefaultRegion)
     }
-    
+
+    // Set Platform variables
+    if ( adopPlatformManagementVersion != null ) {
+        envVars.put("ADOP_PLATFORM_MANAGEMENT_VERSION", adopPlatformManagementVersion)
+    }
+
     // Set Docker environment
     if ( dockerTLSVerify != null && dockerTLSVerify.toBoolean()) {
         envVars.put("DOCKER_TLS_VERIFY", env['DOCKER_TLS_VERIFY'])
