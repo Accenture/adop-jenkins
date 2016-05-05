@@ -10,6 +10,10 @@ def root_Url = env['ROOT_URL']
 def gitGlobalConfigName = env['GIT_GLOBAL_CONFIG_NAME']
 def gitGlobalConfigEmail = env['GIT_GLOBAL_CONFIG_EMAIL']
 def adopPlatformManagementVersion = env['ADOP_PLATFORM_MANAGEMENT_VERSION']
+def awsKeypair = env['AWS_KEYPAIR']
+def awsVpcId = env['AWS_VPC_ID']
+def awsSubnetId = env['AWS_SUBNET_ID']
+def awsInstanceType = env['AWS_INSTANCE_TYPE']
 def awsDefaultRegion = env['AWS_DEFAULT_REGION']
 def dockerTLSVerify = env['DOCKER_TLS_VERIFY']
 def dockerHost = env['DOCKER_HOST']
@@ -46,8 +50,22 @@ Thread.start {
 
     // Example
     //envVars.put("FOO", "bar")
-    if ( awsDefaultRegion != null ) {
-	envVars.put("AWS_DEFAULT_REGION", awsDefaultRegion)
+	
+	// Set AWS environment variables
+    if ( awsKeypair != null ) {
+		envVars.put("AWS_KEYPAIR", awsKeypair)
+    }
+	if ( awsVpcId != null ) {
+		envVars.put("AWS_VPC_ID", awsVpcId)
+    }
+	if ( awsSubnetId != null ) {
+		envVars.put("AWS_SUBNET_ID", awsSubnetId)
+    }
+	if ( awsInstanceType != null ) {
+		envVars.put("AWS_INSTANCE_TYPE", awsInstanceType)
+    }
+	if ( awsDefaultRegion != null ) {
+		envVars.put("AWS_DEFAULT_REGION", awsDefaultRegion)
     }
 
     // Set Platform variables
