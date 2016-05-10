@@ -100,3 +100,6 @@ jquery-detached:1.2
 repository-connector:1.1.1
 mapdb-api:1.0.6.0
 credentials:1.24
+github-api:1.72.1
+github:1.18.1
+github-oauth:0.22.3
