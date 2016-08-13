@@ -1,7 +1,8 @@
-import hudson.model.*;
-import jenkins.model.*;
-import hudson.plugins.sonar.*;
-import hudson.plugins.sonar.model.TriggersConfig;
+import hudson.model.*
+import jenkins.model.*
+import hudson.plugins.sonar.*
+import hudson.plugins.sonar.model.TriggersConfig
+import hudson.plugins.sonar.utils.SQServerVersions
 import hudson.tools.*
 
 // Check if enabled
@@ -32,39 +33,41 @@ Thread.start {
     // Sonar
     // Source: http://pghalliday.com/jenkins/groovy/sonar/chef/configuration/management/2014/09/21/some-useful-jenkins-groovy-scripts.html
     println "--> Configuring SonarQube"
-    def desc_SonarPublisher = instance.getDescriptor("hudson.plugins.sonar.SonarPublisher")
+    def SonarGlobalConfiguration sonar_conf = instance.getDescriptor(SonarGlobalConfiguration.class)
 
     def sonar_inst = new SonarInstallation(
-      "ADOP Sonar", // Name
-      false, // Disabled?
-      sonar_server_url,
-      sonar_db_url,
-      sonar_db_login,
-      sonar_db_password,
-      sonar_plugin_version,
-      sonar_additional_props,
-      new TriggersConfig(),
-      sonar_account_login,
-      sonar_account_password
+        "ADOP Sonar", // Name
+        sonar_server_url,
+        SQServerVersions.SQ_5_1_OR_LOWER, // Major version upgrade of server would require to change it
+        "", // Token
+        sonar_db_url,
+        sonar_db_login,
+        sonar_db_password,
+        sonar_plugin_version,
+        sonar_additional_props,
+        new TriggersConfig(),
+        sonar_account_login,
+        sonar_account_password,
+        "" // Additional Analysis Properties
     )
 
     // Only add ADOP Sonar if it does not exist - do not overwrite existing config
-    def sonar_installations = desc_SonarPublisher.getInstallations()
+    def sonar_installations = sonar_conf.getInstallations()
     def sonar_inst_exists = false
     sonar_installations.each {
-      installation = (SonarInstallation) it
-        if ( sonar_inst.getName() ==  installation.getName() ) {
-                sonar_inst_exists = true
-                println("Found existing installation: " + installation.getName())
+        installation = (SonarInstallation) it
+        if (sonar_inst.getName() == installation.getName()) {
+            sonar_inst_exists = true
+            println("Found existing installation: " + installation.getName())
         }
     }
-    
+
     if (!sonar_inst_exists) {
         sonar_installations += sonar_inst
-        desc_SonarPublisher.setInstallations((SonarInstallation[]) sonar_installations)
-        desc_SonarPublisher.save()
+        sonar_conf.setInstallations((SonarInstallation[]) sonar_installations)
+        sonar_conf.save()
     }
-    
+
     // Sonar Runner
     // Source: http://pghalliday.com/jenkins/groovy/sonar/chef/configuration/management/2014/09/21/some-useful-jenkins-groovy-scripts.html
     println "--> Configuring SonarRunner"
@@ -78,13 +81,13 @@ Thread.start {
     def sonar_runner_installations = desc_SonarRunnerInst.getInstallations()
     def sonar_runner_inst_exists = false
     sonar_runner_installations.each {
-      installation = (SonarRunnerInstallation) it
-        if ( sonarRunner_inst.getName() ==  installation.getName() ) {
-                sonar_runner_inst_exists = true
-                println("Found existing installation: " + installation.getName())
+        installation = (SonarRunnerInstallation) it
+        if (sonarRunner_inst.getName() == installation.getName()) {
+            sonar_runner_inst_exists = true
+            println("Found existing installation: " + installation.getName())
         }
     }
-    
+
     if (!sonar_runner_inst_exists) {
         sonar_runner_installations += sonarRunner_inst
         desc_SonarRunnerInst.setInstallations((SonarRunnerInstallation[]) sonar_runner_installations)
