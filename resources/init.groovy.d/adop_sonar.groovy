@@ -65,6 +65,8 @@ Thread.start {
     if (!sonar_inst_exists) {
         sonar_installations += sonar_inst
         sonar_conf.setInstallations((SonarInstallation[]) sonar_installations)
+        // Enable injection of SonarQube server configuration as build environment variables
+        sonar_conf.setBuildWrapperEnabled(true)
         sonar_conf.save()
     }
 
