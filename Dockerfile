@@ -4,7 +4,8 @@ MAINTAINER Nick Griffin, <nicholas.griffin>
 
 ENV GERRIT_HOST_NAME gerrit
 ENV GERRIT_PORT 8080
-ENV GERRIT_JENKINS_USERNAME="" GERRIT_JENKINS_PASSWORD=""
+ENV GERRIT_SSH_PORT 29418
+ENV GERRIT_PROFILE="ADOP Gerrit" GERRIT_JENKINS_USERNAME="" GERRIT_JENKINS_PASSWORD=""
 
 
 # Copy in configuration files
@@ -27,6 +28,8 @@ RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && chmod +x /entrypoint.sh
 ENV ADOP_LDAP_ENABLED=true ADOP_SONAR_ENABLED=true ADOP_ANT_ENABLED=true ADOP_MAVEN_ENABLED=true ADOP_NODEJS_ENABLED=true ADOP_GERRIT_ENABLED=true
 ENV LDAP_GROUP_NAME_ADMIN=""
 ENV JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false"
+ENV PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH="/var/jenkins_home/userContent/datastore/pluggable/scm"
+ENV PLUGGABLE_SCM_PROVIDER_PATH="/var/jenkins_home/userContent/job_dsl_additional_classpath/"
 
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 
