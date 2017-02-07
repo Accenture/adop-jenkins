@@ -25,6 +25,7 @@ def dockerNetworkName = env['DOCKER_NETWORK_NAME']
 def scmProviderPropertiesPath = env['PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH']
 def scmProviderPluggablePath = env['PLUGGABLE_SCM_PROVIDER_PATH']
 
+def cartridgeSources = env['CARTRIDGE_SOURCES']
 
 // Constants
 def instance = Jenkins.getInstance()
@@ -56,7 +57,7 @@ Thread.start {
 
     // Example
     //envVars.put("FOO", "bar")
-	
+
 	// Set AWS environment variables
     if ( awsKeypair != null ) {
 		envVars.put("AWS_KEYPAIR", awsKeypair)
@@ -155,6 +156,11 @@ Thread.start {
         system_credentials_provider.addCredentials(ssh_key_domain,ssh_key_file)
     }
 
+
+    // Jenkins cartridge sources
+    if ( cartridgeSources != null ) {
+        envVars.put("CARTRIDGE_SOURCES", cartridgeSources)
+    }
 
     // Git Identity
     println "--> Configuring Git Identity"
