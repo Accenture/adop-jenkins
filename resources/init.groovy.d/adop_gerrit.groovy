@@ -17,6 +17,7 @@ def gerrit_front_end_url = env['GERRIT_FRONT_END_URL']
 def gerrit_ssh_port = env['GERRIT_SSH_PORT'] ?: "29418"
 gerrit_ssh_port = gerrit_ssh_port.toInteger()
 def gerrit_username = env['GERRIT_USERNAME'] ?: "jenkins"
+def gerrit_profile = env['GERRIT_PROFILE'] ?: "ADOP Gerrit"
 def gerrit_email = env['GERRIT_EMAIL'] ?: ""
 def gerrit_ssh_key_file = env['GERRIT_SSH_KEY_FILE'] ?: "/var/jenkins_home/.ssh/id_rsa"
 def gerrit_ssh_key_password = env['GERRIT_SSH_KEY_PASSWORD'] ?: null
@@ -32,7 +33,7 @@ Thread.start {
 
     def gerrit_trigger_plugin = PluginImpl.getInstance()
 
-    def gerrit_server = new GerritServer("ADOP Gerrit")
+    def gerrit_server = new GerritServer(gerrit_profile)
 
     def gerrit_servers = gerrit_trigger_plugin.getServerNames()
     def gerrit_server_exists = false
