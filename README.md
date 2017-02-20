@@ -24,6 +24,7 @@ Runtime configuration can be provided using environment variables:
 * ADOP_MAVEN_ENABLED, allow enable/disable Jenkins-MAVEN integration. Default to true (enabled).
 * ADOP_NODEJS_ENABLED, allow enable/disable Jenkins-NODEJS integration. Default to true (enabled).
 * ADOP_GERRIT_ENABLED, allow enable/disable Jenkins-GERRIT integration. Default to true (enabled).
+* ADOP_SMTP_ENABLED, allow enable/disable Jenkins-SMTP integration. Default to false (disabled).
 
 Additional environment variables that allow fine tune Jenkins runtime configuration are:
 
@@ -69,6 +70,11 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * DOCKER_HOST, Docker CLI variable to declare the endpoint to target
 * DOCKER_CERT_PATH, Docker CLI variable to declare the path to the certificate
 * DOCKER_NETWORK_NAME, the Docker custom network to launch containers on
+* SMTP_HOST, SMTP server e.g smtp.gmail.com
+* SMTP_PORT, SMTP server port
+* SMTP_USER, SMTP user
+* SMTP_PASSWORD, SMTP password
+* SMTP_SYSAD_EMAIL, same with SMTP user
 
 ## Run adop-jenkins with OpenLDAP
 The following assumes that MySQL and OpenLDAP are running.
