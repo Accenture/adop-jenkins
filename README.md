@@ -69,6 +69,7 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * DOCKER_HOST, Docker CLI variable to declare the endpoint to target
 * DOCKER_CERT_PATH, Docker CLI variable to declare the path to the certificate
 * DOCKER_NETWORK_NAME, the Docker custom network to launch containers on
+* GROOVY_VERSION, a comma delimited list of Groovy installation profiles to install (e.g. 2.4.8, 2.4.3).
 
 ## Run adop-jenkins with OpenLDAP
 The following assumes that MySQL and OpenLDAP are running.
