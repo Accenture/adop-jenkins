@@ -19,6 +19,7 @@ Runtime configuration can be provided using environment variables:
 
 * JENKINS_OPTS, Jenkins startup options.
 * ADOP_LDAP_ENABLED, allow enable/disable LDAP authentication. Default to true (enabled).
+* ADOP_ACL_ENABLED, allow enable/disable Jenkins user access control lists.
 * ADOP_SONAR_ENABLED, allow enable/disable Jenkins-Sonar integrations. Default to true (enabled).
 * ADOP_ANT_ENABLED, allow enable/disable Jenkins-ANT integration. Default to true (enabled).
 * ADOP_MAVEN_ENABLED, allow enable/disable Jenkins-MAVEN integration. Default to true (enabled).
