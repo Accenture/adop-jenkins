@@ -5,7 +5,7 @@ import com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey;
 import com.cloudbees.plugins.credentials.CredentialsScope;
 import org.jenkinsci.plugins.plaincredentials.*
 import org.jenkinsci.plugins.plaincredentials.impl.*
-import org.apache.commons.fileupload.* 
+import org.apache.commons.fileupload.*
 
 // Variables
 def env = System.getenv()
@@ -24,6 +24,8 @@ def dockerCertPath = env['DOCKER_CLIENT_CERT_PATH']
 def dockerNetworkName = env['DOCKER_NETWORK_NAME']
 def scmProviderPropertiesPath = env['PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH']
 def scmProviderPluggablePath = env['PLUGGABLE_SCM_PROVIDER_PATH']
+def adopLdapEnabled = env['ADOP_LDAP_ENABLED']
+def adopAclEnabled = env['ADOP_ACL_ENABLED']
 
 def cartridgeSources = env['CARTRIDGE_SOURCES']
 
@@ -58,21 +60,25 @@ Thread.start {
     // Example
     //envVars.put("FOO", "bar")
 
-	// Set AWS environment variables
+    // Set AWS environment variables
     if ( awsKeypair != null ) {
-		envVars.put("AWS_KEYPAIR", awsKeypair)
+      envVars.put("AWS_KEYPAIR", awsKeypair)
     }
-	if ( awsVpcId != null ) {
-		envVars.put("AWS_VPC_ID", awsVpcId)
+
+    if ( awsVpcId != null ) {
+      envVars.put("AWS_VPC_ID", awsVpcId)
     }
-	if ( awsSubnetId != null ) {
-		envVars.put("AWS_SUBNET_ID", awsSubnetId)
+
+    if ( awsSubnetId != null ) {
+      envVars.put("AWS_SUBNET_ID", awsSubnetId)
     }
-	if ( awsInstanceType != null ) {
-		envVars.put("AWS_INSTANCE_TYPE", awsInstanceType)
+
+    if ( awsInstanceType != null ) {
+      envVars.put("AWS_INSTANCE_TYPE", awsInstanceType)
     }
-	if ( awsDefaultRegion != null ) {
-		envVars.put("AWS_DEFAULT_REGION", awsDefaultRegion)
+
+    if ( awsDefaultRegion != null ) {
+       envVars.put("AWS_DEFAULT_REGION", awsDefaultRegion)
     }
 
     // Set Platform variables
@@ -84,6 +90,7 @@ Thread.start {
     if ( scmProviderPropertiesPath != null ) {
         envVars.put("PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH", scmProviderPropertiesPath)
     }
+
     if ( scmProviderPluggablePath != null ) {
         envVars.put("PLUGGABLE_SCM_PROVIDER_PATH", scmProviderPluggablePath)
     }
@@ -94,14 +101,25 @@ Thread.start {
     } else {
         envVars.remove("DOCKER_TLS_VERIFY")
     }
+
     if ( dockerHost != null ) {
         envVars.put("DOCKER_HOST", dockerHost)
     }
+
     if ( dockerCertPath != null ) {
         envVars.put("DOCKER_CERT_PATH", dockerCertPath)
     }
+
     if ( dockerNetworkName != null ) {
         envVars.put("DOCKER_NETWORK_NAME", dockerNetworkName)
+    }
+
+    if ( adopLdapEnabled != null ) {
+        envVars.put("ADOP_LDAP_ENABLED", adopLdapEnabled)
+    }
+
+    if ( adopAclEnabled != null ) {
+        envVars.put("ADOP_ACL_ENABLED", adopAclEnabled)
     }
 
     // Jenkins SSH Credentials
@@ -130,7 +148,7 @@ Thread.start {
         }
     }
 
-    if(!ssh_credentials_exist) {        
+    if(!ssh_credentials_exist) {
 
         def ssh_key_domain = com.cloudbees.plugins.credentials.domains.Domain.global()
         def ssh_key_creds = new BasicSSHUserPrivateKey(ssh_key_scope,ssh_key_id,ssh_key_username,ssh_key_private_key_source,ssh_key_passphrase,ssh_key_description)
@@ -148,7 +166,7 @@ Thread.start {
         }
     }
 
-    if(!ssh_credentials_file_exist) {        
+    if(!ssh_credentials_file_exist) {
 
         def ssh_key_domain = com.cloudbees.plugins.credentials.domains.Domain.global()
         def ssh_key_file = new FileCredentialsImpl(ssh_key_scope, ssh_key_file_id, ssh_key_file_description, fileItem, null, null)
