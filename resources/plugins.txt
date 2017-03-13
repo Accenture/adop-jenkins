@@ -127,3 +127,4 @@ workflow-durable-task-step:2.5
 dependency-check-jenkins-plugin:1.4.3
 uno-choice:1.5.2
 copy-to-slave:1.4.4
+active-directory:2.0
