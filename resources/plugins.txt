@@ -118,7 +118,7 @@ workflow-cps:2.18
 workflow-support:2.6
 workflow-step-api:2.4
 workflow-scm-step:2.2
-workflow-aggregator:2.5
+workflow-aggregator:2.4
 workflow-basic-steps:2.2
 workflow-multibranch:2.9
 workflow-remote-loader:1.3
