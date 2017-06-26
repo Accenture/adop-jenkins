@@ -7,7 +7,6 @@ ENV GERRIT_PORT 8080
 ENV GERRIT_SSH_PORT 29418
 ENV GERRIT_PROFILE="ADOP Gerrit" GERRIT_JENKINS_USERNAME="" GERRIT_JENKINS_PASSWORD=""
 
-
 # Copy in configuration files
 COPY resources/plugins.txt /usr/share/jenkins/ref/
 COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
@@ -22,6 +21,13 @@ COPY resources/scriptApproval.xml /usr/share/jenkins/ref/
 # Reprotect
 USER root
 RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && chmod +x /entrypoint.sh
+
+# Install Docker
+RUN curl -fsSL https://get.docker.com/ | sh
+
+# Give jenkins staff permission to run docker
+RUN usermod -aG staff jenkins
+
 # USER jenkins
 
 # Environment variables
