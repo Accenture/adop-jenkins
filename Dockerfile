@@ -17,7 +17,7 @@ COPY resources/views/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/m2/ /usr/share/jenkins/ref/.m2
 COPY resources/entrypoint.sh /entrypoint.sh
 COPY resources/scriptApproval.xml /usr/share/jenkins/ref/
-COPY resources/maven-global-settings-files.xml org.jenkinsci.plugins.configfiles.GlobalConfigFiles.xml
+COPY resources/maven-global-settings-files.xml /usr/share/jenkins/ref/org.jenkinsci.plugins.configfiles.GlobalConfigFiles.xml
 
 # Reprotect
 USER root
