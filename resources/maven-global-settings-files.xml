@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.configfiles.GlobalConfigFiles plugin="config-file-provider@2.16.0">
+  <configs class="sorted-set">
+    <comparator class="org.jenkinsci.plugins.configfiles.GlobalConfigFiles$1"/>
+    <org.jenkinsci.plugins.configfiles.xml.XmlConfig>
+      <id>nexus</id>
+      <name>nexus</name>
+      <comment></comment>
+      <content>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;settings xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd&quot; xmlns=&quot;http://maven.apache.org/SETTINGS/1.1.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;releases&lt;/id&gt;
+      &lt;username&gt;nexus&lt;/username&gt;
+      &lt;password&gt;${env.INITIAL_ADMIN_PASSWORD}&lt;/password&gt;
+    &lt;/server&gt;
+    &lt;server&gt;
+      &lt;id&gt;snapshots&lt;/id&gt;
+      &lt;username&gt;nexus&lt;/username&gt;
+      &lt;password&gt;${env.INITIAL_ADMIN_PASSWORD}&lt;/password&gt;
+    &lt;/server&gt;
+    &lt;server&gt;
+      &lt;id&gt;deployment&lt;/id&gt;
+      &lt;username&gt;${env.INITIAL_ADMIN_USER}&lt;/username&gt;
+      &lt;password&gt;${env.INITIAL_ADMIN_PASSWORD}&lt;/password&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;
+&lt;/settings&gt;</content>
+      <providerId>org.jenkinsci.plugins.configfiles.xml.XmlConfig</providerId>
+    </org.jenkinsci.plugins.configfiles.xml.XmlConfig>
+  </configs>
+</org.jenkinsci.plugins.configfiles.GlobalConfigFiles>
