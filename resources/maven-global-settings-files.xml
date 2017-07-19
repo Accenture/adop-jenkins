@@ -8,6 +8,12 @@
       <comment></comment>
       <content>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;settings xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd&quot; xmlns=&quot;http://maven.apache.org/SETTINGS/1.1.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+    &lt;mirrors&gt;
+        &lt;mirror&gt;
+        &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+        &lt;url&gt;http://nexus:8081/nexus/content/repositories/central/&lt;/url&gt;
+        &lt;/mirror&gt;
+    &lt;/mirrors&gt;
   &lt;servers&gt;
     &lt;server&gt;
       &lt;id&gt;releases&lt;/id&gt;
