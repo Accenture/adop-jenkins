@@ -12,6 +12,7 @@
         &lt;mirror&gt;
         &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
         &lt;url&gt;http://nexus:8081/nexus/content/repositories/central/&lt;/url&gt;
+        &lt;id&gt;releases&lt;/id&gt;
         &lt;/mirror&gt;
     &lt;/mirrors&gt;
   &lt;servers&gt;
