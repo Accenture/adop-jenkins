@@ -1,5 +1,7 @@
 #!/bin/bash
 
+groupmod -g $(ls -al /var/run/ | grep docker.sock | awk '{print $4}') docker && usermod -aG docker jenkins
+
 echo "Genarate JENKINS SSH KEY and add it to gerrit"
 host=$GERRIT_HOST_NAME
 port=$GERRIT_PORT
