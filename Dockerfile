@@ -27,8 +27,6 @@ RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && chmod +x /entrypoint.sh
 # Install Docker
 RUN curl -fsSL https://get.docker.com/ | sh
 
-# Give jenkins staff permission to run docker
-# RUN usermod -aG staff jenkins
 
 # USER jenkins
 
