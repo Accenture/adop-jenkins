@@ -1,7 +1,6 @@
 FROM jenkins:2.7.4
 
-MAINTAINER Nick Griffin, <nicholas.griffin>
-
+LABEL maintainer Liatrio 
 
 ENV GERRIT_HOST_NAME gerrit
 ENV GERRIT_PORT 8080
