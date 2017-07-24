@@ -1,5 +1,17 @@
 #!/bin/bash
 
+re='^[0-9]+$'
+sock_group=$(ls -al /var/run/ | grep docker.sock | awk '{print $4}')
+if [[ $sock_group =~ $re ]]
+then
+  echo "Changing docker gid to match docker sock and adding jenkins user to docker group"
+  groupmod -g $(ls -al /var/run/ | grep docker.sock | awk '{print $4}') docker && usermod -aG docker jenkins
+else
+  echo "Adding jenkins user to current docker.socket group"
+  usermod -aG $sock_group jenkins
+fi
+
+
 echo "Genarate JENKINS SSH KEY and add it to gerrit"
 host=$GERRIT_HOST_NAME
 port=$GERRIT_PORT
