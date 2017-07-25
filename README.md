@@ -11,7 +11,7 @@ Jenkins is an open source automation tool.
 
 The easiest for to run adop-jenkins image is as follow:
 ```
-docker run --name <your-container-name> -d -p 8080:8080 accenture/adop-jenkins:VERSION
+docker run --name <your-container-name> -d -p 8080:8080 liatrio/ldop-jenkins:VERSION
 ```
 after the above Jenkins will be available at: http://localhost:8080
 
@@ -110,7 +110,7 @@ Support for older versions (down to 1.6) is provided on a best-effort basis.
 Documentation for this image is available in the [Jenkins documentation page](https://wiki.jenkins-ci.org/display/JENKINS/Home).
 
 ## Issues
-If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/Accenture/adop-jenkins/issues).
+If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/liatrio/adop-jenkins/issues).
 
 ## Contribute
 You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.

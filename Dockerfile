@@ -1,12 +1,11 @@
 FROM jenkins:2.7.4
 
-MAINTAINER Nick Griffin, <nicholas.griffin>
+LABEL maintainer Liatrio 
 
 ENV GERRIT_HOST_NAME gerrit
 ENV GERRIT_PORT 8080
 ENV GERRIT_SSH_PORT 29418
 ENV GERRIT_PROFILE="ADOP Gerrit" GERRIT_JENKINS_USERNAME="" GERRIT_JENKINS_PASSWORD=""
-
 
 # Copy in configuration files
 COPY resources/plugins.txt /usr/share/jenkins/ref/
@@ -18,10 +17,16 @@ COPY resources/views/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/m2/ /usr/share/jenkins/ref/.m2
 COPY resources/entrypoint.sh /entrypoint.sh
 COPY resources/scriptApproval.xml /usr/share/jenkins/ref/
+COPY resources/maven-global-settings-files.xml /usr/share/jenkins/ref/org.jenkinsci.plugins.configfiles.GlobalConfigFiles.xml
 
 # Reprotect
 USER root
 RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && chmod +x /entrypoint.sh
+
+# Install Docker
+RUN curl -fsSL https://get.docker.com/ | sh
+
+
 # USER jenkins
 
 # Environment variables
@@ -31,6 +36,9 @@ ENV JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false"
 ENV PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH="/var/jenkins_home/userContent/datastore/pluggable/scm"
 ENV PLUGGABLE_SCM_PROVIDER_PATH="/var/jenkins_home/userContent/job_dsl_additional_classpath/"
 
+# Install Plugins
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+
+# Add Maven credentials
 
 ENTRYPOINT ["/entrypoint.sh"]
