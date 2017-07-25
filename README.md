@@ -110,7 +110,7 @@ Support for older versions (down to 1.6) is provided on a best-effort basis.
 Documentation for this image is available in the [Jenkins documentation page](https://wiki.jenkins-ci.org/display/JENKINS/Home).
 
 ## Issues
-If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/Accenture/adop-jenkins/issues).
+If you have any problems with or questions about this image, please contact us through a [GitHub issue](https://github.com/liatrio/adop-jenkins/issues).
 
 ## Contribute
 You are invited to contribute new features, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.
