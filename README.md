@@ -11,7 +11,7 @@ Jenkins is an open source automation tool.
 
 The easiest for to run adop-jenkins image is as follow:
 ```
-docker run --name <your-container-name> -d -p 8080:8080 accenture/adop-jenkins:VERSION
+docker run --name <your-container-name> -d -p 8080:8080 liatrio/ldop-jenkins:VERSION
 ```
 after the above Jenkins will be available at: http://localhost:8080
 
