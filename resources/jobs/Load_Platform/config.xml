@@ -23,6 +23,16 @@
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <de.pellepelster.jenkins.walldisplay.WallDisplayJobProperty plugin="jenkinswalldisplay@0.6.30"/>
+    <EnvInjectJobProperty plugin="envinject@1.92.1">
+      <info>
+        <loadFilesFromMaster>false</loadFilesFromMaster>
+      </info>
+      <on>true</on>
+      <keepJenkinsSystemVariables>true</keepJenkinsSystemVariables>
+      <keepBuildVariables>true</keepBuildVariables>
+      <overrideBuildParameters>false</overrideBuildParameters>
+      <contributors/>
+    </EnvInjectJobProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.0">
     <configVersion>2</configVersion>
@@ -81,7 +91,15 @@ fi
 # Setup remote &amp; populate
 git remote add adop ssh://jenkins@gerrit:29418/&quot;${target_repo_name}&quot;
 git fetch adop
-git push adop +refs/remotes/origin/*:refs/heads/*</command>
+git push adop +refs/remotes/origin/*:refs/heads/*
+
+# If a version has been specified, let&apos;s switch to it
+if [ ! -z &quot;${ADOP_PLATFORM_MANAGEMENT_VERSION}&quot; ] &amp;&amp; [[ &quot;${ADOP_PLATFORM_MANAGEMENT_VERSION}&quot; =~ ^[a-fA-F0-9]{8,40}$ ]] &amp;&amp; [ &quot;$(git cat-file -t &quot;${ADOP_PLATFORM_MANAGEMENT_VERSION}&quot;)&quot; = &quot;commit&quot; ]; then
+	echo &quot;INFO - Checking out specified ADOP_PLATFORM_MANAGEMENT_VERSION &apos;${ADOP_PLATFORM_MANAGEMENT_VERSION}&apos;&quot;
+    git checkout &quot;${ADOP_PLATFORM_MANAGEMENT_VERSION}&quot;
+else
+	echo &quot;WARNING - ADOP_PLATFORM_MANAGEMENT_VERSION is set to &apos;${ADOP_PLATFORM_MANAGEMENT_VERSION}&apos; which is not a valid Git commit hash - defaulting to &apos;master&apos;&quot;
+fi</command>
     </hudson.tasks.Shell>
     <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.48">
       <targets>bootstrap/**/*.groovy</targets>
