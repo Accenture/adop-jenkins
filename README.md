@@ -25,6 +25,7 @@ Runtime configuration can be provided using environment variables:
 * ADOP_MAVEN_ENABLED, allow enable/disable Jenkins-MAVEN integration. Default to true (enabled).
 * ADOP_NODEJS_ENABLED, allow enable/disable Jenkins-NODEJS integration. Default to true (enabled).
 * ADOP_GERRIT_ENABLED, allow enable/disable Jenkins-GERRIT integration. Default to true (enabled).
+* ADOP_AD_ENABLED, allow enable/disable Active Directory authentication. Default to false (disabled).
 
 Additional environment variables that allow fine tune Jenkins runtime configuration are:
 
@@ -71,6 +72,12 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * DOCKER_CERT_PATH, Docker CLI variable to declare the path to the certificate
 * DOCKER_NETWORK_NAME, the Docker custom network to launch containers on
 * GROOVY_VERSION, a comma delimited list of Groovy installation profiles to install (e.g. 2.4.8, 2.4.3).
+* AD_SERVER, a comma delimited active directory server
+* AD_DOMAIN_NAME, active directory domain name
+* AD_DOMAIN_CONT, active directory domain controller
+* AD_SITE, It allows a site to be specefied as part of domain name
+* AD_BIND_DN, active directory bind DN user
+* AD_BIND_DN_PASS, active directory bind DN password
 
 ## Run adop-jenkins with OpenLDAP
 The following assumes that MySQL and OpenLDAP are running.
@@ -93,6 +100,23 @@ The following command will run adop-jenkins and connect it to OpenLDAP
   -e LDAP_DISABLE_MAIL_ADDRESS_RESOLVER="false" \
   -e LDAP_DISPLAY_NAME_ATTRIBUTE_NAME="displayName" \
   -e LDAP_MAIL_ADDRESS_ATTRIBUTE_NAME="mail" \
+  -d accenture/adop-jenkins:VERSION
+```
+
+## Run adop-jenkins with Active Directory
+The following assumes Active Directory is running.
+```
+  docker run \
+  --name adop-jenkins \
+  -p 8080:8080 \
+  -e ADOP_LDAP_ENABLED=false \
+  -e ADOP_AD_ENABLED=true \
+  -e AD_SERVER="" \
+  -e AD_DOMAIN_NAME="" \
+  -e AD_DOMAIN_CONT="" \
+  -e AD_SITE="" \
+  -e AD_BIND_DN="" \
+  -e AD_BIND_DN_PASS="" \
   -d accenture/adop-jenkins:VERSION
 ```
 
