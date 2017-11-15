@@ -26,6 +26,7 @@ def scmProviderPropertiesPath = env['PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH']
 def scmProviderPluggablePath = env['PLUGGABLE_SCM_PROVIDER_PATH']
 def adopLdapEnabled = env['ADOP_LDAP_ENABLED']
 def adopAclEnabled = env['ADOP_ACL_ENABLED']
+def ldapIsModifiable = env['LDAP_IS_MODIFIABLE']
 
 def cartridgeSources = env['CARTRIDGE_SOURCES']
 
@@ -120,6 +121,10 @@ Thread.start {
 
     if ( adopAclEnabled != null ) {
         envVars.put("ADOP_ACL_ENABLED", adopAclEnabled)
+    }
+
+    if (ldapIsModifiable != null ) {
+        envVars.put("LDAP_IS_MODIFIABLE", ldapIsModifiable)
     }
 
     // Jenkins SSH Credentials

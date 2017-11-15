@@ -71,6 +71,7 @@ Additional environment variables that allow fine tune Jenkins runtime configurat
 * DOCKER_CERT_PATH, Docker CLI variable to declare the path to the certificate
 * DOCKER_NETWORK_NAME, the Docker custom network to launch containers on
 * GROOVY_VERSION, a comma delimited list of Groovy installation profiles to install (e.g. 2.4.8, 2.4.3).
+* LDAP_IS_MODIFIABLE, allows us to interact with LDAP configuration through jenkins, Allowed values true (default) and false. If set to true, LDAP can be modified and jenkins will be able to create necessary users/groups in LDAP. If set to false, LDAP can not be modified and jenkins need be configured to use existing users/groups in LDAP. This variable will be used when ADOP_LDAP_ENABLED is set to true.
 
 ## Run adop-jenkins with OpenLDAP
 The following assumes that MySQL and OpenLDAP are running.
