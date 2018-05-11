@@ -34,7 +34,7 @@ nodejs:0.2.1
 icon-shim:2.0.3
 structs:1.5
 build-name-setter:1.6.5
-sonar:2.4.4
+sonar:2.5
 branch-api:1.11
 mapdb-api:1.0.9.0
 display-url-api:0.5
