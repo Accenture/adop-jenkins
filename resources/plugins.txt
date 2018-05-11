@@ -89,7 +89,6 @@ xunit:1.102
 pam-auth:1.3
 antisamy-markup-formatter:1.5
 simple-theme-plugin:0.3
-scriptler:2.9
 git-server:1.7
 tap:2.0.1
 global-build-stats:1.4
@@ -125,5 +124,4 @@ workflow-remote-loader:1.3
 workflow-cps-global-lib:2.3
 workflow-durable-task-step:2.5
 dependency-check-jenkins-plugin:1.4.3
-uno-choice:1.5.2
 copy-to-slave:1.4.4
