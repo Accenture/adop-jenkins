@@ -1,4 +1,4 @@
-FROM jenkins:2.7.4
+FROM jenkins/jenkins:2.107.1
 
 MAINTAINER Nick Griffin, <nicholas.griffin>
 
@@ -30,6 +30,7 @@ ENV JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false"
 ENV PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH="/var/jenkins_home/userContent/datastore/pluggable/scm"
 ENV PLUGGABLE_SCM_PROVIDER_PATH="/var/jenkins_home/userContent/job_dsl_additional_classpath/"
 
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh $(sed ':a;N;$!ba;s/\n/ /g' /usr/share/jenkins/ref/plugins.txt)
+RUN echo "KexAlgorithms diffie-hellman-group1-sha1" >> /etc/ssh/ssh_config
 
 ENTRYPOINT ["/entrypoint.sh"]
