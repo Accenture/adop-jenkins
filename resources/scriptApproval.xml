@@ -1,11 +1,48 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<scriptApproval plugin="script-security@1.23">
-  <approvedScriptHashes/>
+<scriptApproval plugin="script-security@1.44">
+  <approvedScriptHashes>
+  </approvedScriptHashes>
   <approvedSignatures>
     <string>field java.util.ArrayList size</string>
+    <string>method com.michelin.cio.hudson.plugins.rolestrategy.RoleBasedAuthorizationStrategy addRole java.lang.String com.michelin.cio.hudson.plugins.rolestrategy.Role</string>
+    <string>method com.michelin.cio.hudson.plugins.rolestrategy.RoleBasedAuthorizationStrategy assignRole java.lang.String com.michelin.cio.hudson.plugins.rolestrategy.Role</string>
+    <string>method com.michelin.cio.hudson.plugins.rolestrategy.RoleBasedAuthorizationStrategy getRoleMap java.lang.String</string>
+    <string>method com.michelin.cio.hudson.plugins.rolestrategy.RoleMap getRole java.lang.String</string>
+    <string>method com.michelin.cio.hudson.plugins.rolestrategy.RoleBasedAuthorizationStrategy assignRole java.lang.String com.michelin.cio.hudson.plugins.rolestrategy.Role java.lang.String</string>
     <string>method groovy.lang.GString plus java.lang.String</string>
-  </approvedSignatures>
-  <aclApprovedSignatures/>
+    <string>method groovy.lang.Script println java.lang.Object</string>
+    <string>method hudson.model.Run getEnvironment hudson.model.TaskListener</string>
+    <string>method hudson.model.Saveable save</string>
+    <string>method java.lang.Class getDeclaredMethod java.lang.String java.lang.Class[]</string>
+    <string>method java.lang.reflect.AccessibleObject setAccessible boolean</string>
+    <string>method jenkins.model.Jenkins getAuthorizationStrategy</string>
+    <string>method jenkins.model.Jenkins getGlobalNodeProperties</string>
+    <string>new com.michelin.cio.hudson.plugins.rolestrategy.Role java.lang.String java.lang.String java.util.Set</string>
+    <string>staticField com.michelin.cio.hudson.plugins.rolestrategy.RoleBasedAuthorizationStrategy PROJECT</string>
+    <string>staticMethod hudson.model.Hudson getInstance</string>
+    <string>staticMethod hudson.security.Permission fromId java.lang.String</string>
+    <string>staticMethod jenkins.model.Jenkins getInstance</string>
+    <string>staticMethod org.apache.commons.lang.RandomStringUtils randomAlphanumeric int</string>
+    <string>new java.io.File java.lang.String</string>
+    <string>method hudson.util.PersistedList getAll java.lang.Class</string>
+    <string>method java.io.File listFiles</string>
+    <string>method hudson.slaves.EnvironmentVariablesNodeProperty getEnvVars</string>
+    <string>method java.io.File isDirectory</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods println groovy.lang.Closure java.lang.Object</string>
+    <string>method java.io.File getName</string>
+    <string>new java.util.Properties</string>
+    <string>new java.io.FileInputStream java.lang.String</string>
+    <string>method java.util.Properties load java.io.InputStream</string>
+    <string>method java.util.Properties getProperty java.lang.String</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods toURL java.lang.String</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getText java.net.URL</string>
+    <string>method hudson.model.AbstractBuild getWorkspace</string>
+    <string>method hudson.FilePath getChannel</string>
+    <string>new hudson.FilePath hudson.remoting.VirtualChannel java.lang.String</string>
+    <string>method hudson.FilePath list java.lang.String</string>
+ </approvedSignatures>
+  <aclApprovedSignatures>
+  </aclApprovedSignatures>
   <approvedClasspathEntries/>
   <pendingScripts/>
   <pendingSignatures/>
