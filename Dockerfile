@@ -1,4 +1,4 @@
-FROM jenkins:2.7.4
+FROM jenkins/jenkins:2.107.3
 
 MAINTAINER Nick Griffin, <nicholas.griffin>
 
@@ -12,7 +12,6 @@ COPY resources/plugins.txt /usr/share/jenkins/ref/
 COPY resources/init.groovy.d/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/scripts/ /usr/share/jenkins/ref/adop_scripts/
 COPY resources/jobs/ /usr/share/jenkins/ref/jobs/
-COPY resources/scriptler/ /usr/share/jenkins/ref/scriptler/scripts/
 COPY resources/views/ /usr/share/jenkins/ref/init.groovy.d/
 COPY resources/m2/ /usr/share/jenkins/ref/.m2
 COPY resources/entrypoint.sh /entrypoint.sh
@@ -30,6 +29,7 @@ ENV JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false"
 ENV PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH="/var/jenkins_home/userContent/datastore/pluggable/scm"
 ENV PLUGGABLE_SCM_PROVIDER_PATH="/var/jenkins_home/userContent/job_dsl_additional_classpath/"
 
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+RUN xargs /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
+RUN echo "KexAlgorithms diffie-hellman-group1-sha1" >> /etc/ssh/ssh_config
 
 ENTRYPOINT ["/entrypoint.sh"]
