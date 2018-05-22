@@ -1,11 +1,12 @@
-import hudson.model.*;
-import jenkins.model.*;
-import com.cloudbees.plugins.credentials.SystemCredentialsProvider;
-import com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey;
-import com.cloudbees.plugins.credentials.CredentialsScope;
+import hudson.model.*
+import jenkins.model.*
+import com.cloudbees.plugins.credentials.SystemCredentialsProvider
+import com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey
+import com.cloudbees.plugins.credentials.CredentialsScope
 import org.jenkinsci.plugins.plaincredentials.*
 import org.jenkinsci.plugins.plaincredentials.impl.*
 import org.apache.commons.fileupload.*
+import com.anchore.jenkins.plugins.anchore.AnchoreBuilder.DescriptorImpl
 
 // Variables
 def env = System.getenv()
@@ -51,7 +52,7 @@ Thread.start {
     envVars = null
 
     if ( envVarsNodePropertyList == null || envVarsNodePropertyList.size() == 0 ) {
-      newEnvVarsNodeProperty = new hudson.slaves.EnvironmentVariablesNodeProperty();
+      newEnvVarsNodeProperty = new hudson.slaves.EnvironmentVariablesNodeProperty()
       globalNodeProperties.add(newEnvVarsNodeProperty)
       envVars = newEnvVarsNodeProperty.getEnvVars()
     } else {
@@ -190,6 +191,21 @@ Thread.start {
     def desc_git_scm = instance.getDescriptor("hudson.plugins.git.GitSCM")
     desc_git_scm.setGlobalConfigName(gitGlobalConfigName)
     desc_git_scm.setGlobalConfigEmail(gitGlobalConfigEmail)
+    
+    // Anchore plugin configuration
+    def anchore = Jenkins.instance.getExtensionList(
+      com.anchore.jenkins.plugins.anchore.AnchoreBuilder.DescriptorImpl.class
+    )[0]
+    org.kohsuke.stapler.StaplerRequest stapler = null
+    net.sf.json.JSONObject jsonObject = new net.sf.json.JSONObject()
+    jsonObject.put("debug", false)
+    jsonObject.put("enabled", true)
+    jsonObject.put("useSudo", false)
+    jsonObject.put("containerImageId", "anchore/jenkins:latest")
+    jsonObject.put("containerId", "jenkins_anchore")
+    jsonObject.put("localVol", "")
+    jsonObject.put("modulesVol", "")
+    anchore.configure(stapler, jsonObject)
 
     // Save the state
     instance.save()
