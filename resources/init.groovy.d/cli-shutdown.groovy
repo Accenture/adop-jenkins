@@ -35,3 +35,6 @@ def removal = { lst ->
 def j = Jenkins.instance;
 removal(j.getExtensionList(RootAction.class))
 removal(j.actions)
+
+println "--> Disable Jenkins CLI Remoting interface"
+Jenkins.instance.getDescriptor("jenkins.CLI").get().setEnabled(false)
