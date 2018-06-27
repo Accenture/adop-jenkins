@@ -40,6 +40,14 @@
     <string>method hudson.FilePath getChannel</string>
     <string>new hudson.FilePath hudson.remoting.VirtualChannel java.lang.String</string>
     <string>method hudson.FilePath list java.lang.String</string>
+    <string>new jenkins.plugins.git.GitSCMSource java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String boolean</string>
+    <string>new org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever jenkins.scm.api.SCMSource</string>
+    <string>method jenkins.model.Jenkins getDescriptor java.lang.String</string>
+    <string>new org.jenkinsci.plugins.workflow.libs.LibraryConfiguration java.lang.String org.jenkinsci.plugins.workflow.libs.LibraryRetriever</string>
+    <string>method org.jenkinsci.plugins.workflow.libs.LibraryConfiguration setDefaultVersion java.lang.String</string>
+    <string>method org.jenkinsci.plugins.workflow.libs.LibraryConfiguration setImplicit boolean</string>
+    <string>method org.jenkinsci.plugins.workflow.libs.GlobalLibraries get</string>
+    <string>method org.jenkinsci.plugins.workflow.libs.GlobalLibraries setLibraries java.util.List</string>
  </approvedSignatures>
   <aclApprovedSignatures>
   </aclApprovedSignatures>
