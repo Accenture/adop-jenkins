@@ -22,6 +22,7 @@ copy-to-slave:1.4.4
 copyartifact:1.39.1
 credentials-binding:1.16
 credentials:2.1.16
+cucumber:0.0.2
 cucumber-reports:3.16.0
 cvs:2.14
 dashboard-view:2.9.11
@@ -69,6 +70,7 @@ jquery:1.12.4-0
 jsch:0.1.54.2
 jslint:0.8.2
 junit:1.24
+junit-attachments:1.5
 ldap:1.20
 mailer:1.21
 mapdb-api:1.0.9.0
@@ -90,6 +92,7 @@ pipeline-build-step:2.7
 pipeline-github-lib:1.0
 pipeline-graph-analysis:1.6
 pipeline-input-step:2.8
+pipeline-maven:3.5.8
 pipeline-milestone-step:1.3.1
 pipeline-model-api:1.2.9
 pipeline-model-declarative-agent:1.1.1
@@ -110,7 +113,7 @@ scm-api:2.2.7
 script-security:1.44
 sectioned-view:1.24
 simple-theme-plugin:0.4
-sonar:2.4.4
+sonar:2.7.1
 ssh-agent:1.15
 ssh-credentials:1.13
 ssh-slaves:1.26
@@ -118,6 +121,7 @@ structs:1.14
 subversion:2.10.5
 swarm:3.12
 tap:2.2.1
+tasks:4.52
 thinBackup:1.9
 timestamper:1.8.10
 token-macro:2.5
