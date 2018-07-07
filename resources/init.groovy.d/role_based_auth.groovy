@@ -20,11 +20,11 @@ def currentAuthenticationStrategy = Hudson.instance.getAuthorizationStrategy()
 Thread.start {
     sleep 15000
     if (currentAuthenticationStrategy instanceof RoleBasedAuthorizationStrategy) {
-      println "Role based authorisation already enabled."
+      println "Role based authorization already enabled."
       println "Exiting script..."
       return
     } else {
-      println "Enabling role based authorisation strategy..."
+      println "Enabling role based authorization strategy..."
     }
 
     // Set new authentication strategy
