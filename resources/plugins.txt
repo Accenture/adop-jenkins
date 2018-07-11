@@ -113,7 +113,7 @@ scm-api:2.2.7
 script-security:1.44
 sectioned-view:1.24
 simple-theme-plugin:0.4
-sonar:2.7.1
+sonar:2.4.4
 ssh-agent:1.15
 ssh-credentials:1.13
 ssh-slaves:1.26
