@@ -13,6 +13,7 @@ if (!env['ADOP_SONAR_ENABLED'].toBoolean()) {
 
 // Variables
 def sonar_server_url = env['SONAR_SERVER_URL']
+def sonar_auth_token = env['SONAR_AUTH_TOKEN']
 def sonar_plugin_version = env['SONAR_PLUGIN_VERSION']
 def sonar_additional_props = env['SONAR_ADDITIONAL_PROPS']
 
@@ -32,7 +33,7 @@ Thread.start {
     def sonar_inst = new SonarInstallation(
         "ADOP Sonar", // Name
         sonar_server_url,
-        "", // Token
+        sonar_auth_token,
         sonar_plugin_version,
         sonar_additional_props,
         new TriggersConfig(),

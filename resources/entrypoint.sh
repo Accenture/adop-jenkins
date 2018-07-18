@@ -14,6 +14,9 @@ mkdir -p $PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH $PLUGGABLE_SCM_PROVIDER_PATH
 mkdir -p ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/CartridgeLoader ${PLUGGABLE_SCM_PROVIDER_PROPERTIES_PATH}/ScmProviders
 nohup /usr/share/jenkins/ref/adop\_scripts/generate_gerrit_scm.sh -i ${gerrit_provider_id} -p ${gerrit_protocol} -h ${host} &
 
+echo "Generate Sonar authentication token"
+source /usr/share/jenkins/ref/adop\_scripts/generate_sonar_auth_token.sh
+
 echo "skip upgrade wizard step after installation"
 echo "2.7.4" > /var/jenkins_home/jenkins.install.UpgradeWizard.state
 
