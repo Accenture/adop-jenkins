@@ -19,7 +19,8 @@ COPY resources/scriptApproval.xml /usr/share/jenkins/ref/
 
 # Reprotect
 USER root
-RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && chmod +x /entrypoint.sh
+RUN chmod +x -R /usr/share/jenkins/ref/adop_scripts/ && \
+    chmod +x /entrypoint.sh
 # USER jenkins
 
 # Environment variables
