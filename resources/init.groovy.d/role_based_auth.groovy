@@ -49,7 +49,6 @@ Thread.start {
     adminPermissions.add(Permission.fromId("com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains"));
     adminPermissions.add(Permission.fromId("hudson.model.Computer.Create"));
     adminPermissions.add(Permission.fromId("hudson.model.View.Configure"));
-    adminPermissions.add(Permission.fromId("com.sonyericsson.hudson.plugins.gerrit.trigger.PluginImpl.Retrigger"));
     adminPermissions.add(Permission.fromId("hudson.model.Hudson.ConfigureUpdateCenter"));
     adminPermissions.add(Permission.fromId("hudson.model.Computer.Build"));
     adminPermissions.add(Permission.fromId("hudson.model.Item.Configure"));
@@ -71,7 +70,6 @@ Thread.start {
     adminPermissions.add(Permission.fromId("hudson.model.Hudson.RunScripts"));
     adminPermissions.add(Permission.fromId("hudson.model.View.Create"));
     adminPermissions.add(Permission.fromId("hudson.model.Item.Delete"));
-    adminPermissions.add(Permission.fromId("com.sonyericsson.hudson.plugins.gerrit.trigger.PluginImpl.ManualTrigger"));
     adminPermissions.add(Permission.fromId("hudson.model.Computer.Configure"));
     adminPermissions.add(Permission.fromId("com.cloudbees.plugins.credentials.CredentialsProvider.Create"));
     adminPermissions.add(Permission.fromId("hudson.model.Computer.Disconnect"));

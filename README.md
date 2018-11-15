@@ -24,15 +24,14 @@ Runtime configuration can be provided using environment variables:
 * ADOP_ANT_ENABLED, allow enable/disable Jenkins-ANT integration. Default to true (enabled).
 * ADOP_MAVEN_ENABLED, allow enable/disable Jenkins-MAVEN integration. Default to true (enabled).
 * ADOP_NODEJS_ENABLED, allow enable/disable Jenkins-NODEJS integration. Default to true (enabled).
-* ADOP_GERRIT_ENABLED, allow enable/disable Jenkins-GERRIT integration. Default to true (enabled).
+* ADOP_GITLAB_ENABLED, allow enable/disable Jenkins-GITLAB integration. Default to true (enabled).
 
 Additional environment variables that allow fine tune Jenkins runtime configuration are:
 
-* GERRIT_HOST_NAME, the Gerrit hostname. Default to Gerrit
-* GERRIT_PORT, the port Gerrit APIs are exposed. Default to 8080
-* GERRIT_JENKINS_USERNAME, the username Jenkins will use to connect to Gerrit. Default to Gerrit.
-* GERRIT_JENKINS_PASSWORD, the password Jenkins will use to connect to Gerrit. Default to gerrit.
-* GERRIT_FRONT_END_URL, the URL for Gerrit frontend.
+* GITLAB_HOST_NAME, the Gitlab hostname. Default to gitlab
+* GITLAB_PORT, the port Gitlab APIs are exposed. Default to 80
+* GITLAB_JENKINS_USERNAME, the username Jenkins will use to connect to Gitlab. Default to Gitlab. 
+* GITLAB_JENKINS_PASSWORD, the password Jenkins will use to connect to Gitlab. Default to gitlab.
 * INITIAL_ADMIN_USER, the username for the admin user.
 * INITIAL_ADMIN_PASSWORD, the password for the initial admin user.
 * LDAP_SERVER, the LDPA URI, i.e. ldap-host:389

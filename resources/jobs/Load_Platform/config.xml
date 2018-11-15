@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>This job is responsible for retrieving the ADOP platform management repository and pushing it to the ADOP Gerrit instance.</description>
+  <description>This job is responsible for retrieving the ADOP platform management repository.</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
@@ -67,31 +67,6 @@ if [ -z $GIT_URL ]; then
 	echo &quot;GIT_URL is not set&quot;
     exit 1
 fi
-
-# Create Gerrit repository
-target_repo_name=&quot;platform-management&quot;
-repo_exists=0
-list_of_repos=$(ssh -n -o StrictHostKeyChecking=no -p 29418 gerrit gerrit ls-projects --type code)
-
-for repo in ${list_of_repos}
-do
-  if [ ${repo} = ${target_repo_name} ]; then
-    echo &quot;Found: ${repo}&quot;
-    repo_exists=1
-    break
-  fi
-done
-
-if [ ${repo_exists} -eq 0 ]; then
-  ssh -n -o StrictHostKeyChecking=no -p 29418 gerrit gerrit create-project --parent &quot;All-Projects&quot; &quot;${target_repo_name}&quot;
-else
-  echo &quot;Repository already exists, skipping: ${target_repo_name}&quot;
-fi
-
-# Setup remote &amp; populate
-git remote add adop ssh://jenkins@gerrit:29418/&quot;${target_repo_name}&quot;
-git fetch adop
-git push adop +refs/remotes/origin/*:refs/heads/*
 
 # If a version has been specified, let&apos;s switch to it
 if [ ! -z &quot;${ADOP_PLATFORM_MANAGEMENT_VERSION}&quot; ] &amp;&amp; [[ &quot;${ADOP_PLATFORM_MANAGEMENT_VERSION}&quot; =~ ^[a-fA-F0-9]{8,40}$ ]] &amp;&amp; [ &quot;$(git cat-file -t &quot;${ADOP_PLATFORM_MANAGEMENT_VERSION}&quot;)&quot; = &quot;commit&quot; ]; then
