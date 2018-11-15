@@ -1,7 +1,3 @@
-# Supported tags and respective `Dockerfile` links
-
-- [`0.2.0`, `0.2.0` (*0.2.0/Dockerfile*)](https://github.com/Accenture/adop-jenkins/blob/0.2.0/Dockerfile)
-
 # What is adop-jenkins?
 
 adop-jenkins is a wrapper for the Jenkins image. It has primarily been built to perform extended configuration.
